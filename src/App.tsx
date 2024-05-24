@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import ExcelEditor from './component/ExcelEditor';
-import ExcelReaderSheet2 from './component/ExcelReaderSheet2';
+import ExcelManager from "./component/ExcelManager";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <ExcelEditor />
-      <ExcelReaderSheet2 />
+      <ExcelManager />
     </div>
   );
 };
