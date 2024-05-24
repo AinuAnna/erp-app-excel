@@ -29,7 +29,12 @@ const ExcelEditor: React.FC = () => {
                     setWorkbook(wb);
                     const sheet1Name = wb.SheetNames[0];
                     const sheet1 = wb.Sheets[sheet1Name];
-                    const sheet1Data: any[][] = XLSX.utils.sheet_to_json(sheet1, { header: 1, blankrows: false }) as any[][];
+                    let sheet1Data: any[][] = XLSX.utils.sheet_to_json(sheet1, { header: 1, blankrows: false }) as any[][];
+
+                    if (sheet1Data.length > 0 && sheet1Data[0].every((cell: any) => cell === '')) {
+                        sheet1Data = sheet1Data.slice(1);
+                    }
+
                     setData(sheet1Data);
 
                     const sheet2Name = wb.SheetNames[1];
@@ -71,7 +76,13 @@ const ExcelEditor: React.FC = () => {
         for (let key in inputData) {
             const [col, rowIndex] = key.split('-');
             const colIndex = data[0].indexOf(col);
-            updatedSheetData[parseInt(rowIndex, 10) + 1][colIndex] = inputData[key];
+            const cellValue = inputData[key];
+            const numericValue = parseFloat(cellValue);
+            if (!isNaN(numericValue)) {
+                updatedSheetData[parseInt(rowIndex, 10) + 1][colIndex] = numericValue;
+            } else {
+                updatedSheetData[parseInt(rowIndex, 10) + 1][colIndex] = cellValue;
+            }
         }
 
         const updatedSheet1 = XLSX.utils.aoa_to_sheet(updatedSheetData);
