@@ -109,20 +109,29 @@ const ExcelManager: React.FC = () => {
     };
 
     return (
-            <div>
-                <input type="file" onChange={handleFileUpload}/>
-                <ExcelEditor
-                    data={data}
-                    setData={setData}
-                    inputData={inputData}
-                    setInputData={setInputData}
-                    workbook={workbook}
-                    fileName={fileName}
-                    handleSave={handleSave}
+        <div>
+            <h1>ERP-SYSTEM</h1>
+            <label>
+                Upload
+                <input
+                    type="file"
+                    className="custom-file-input"
+                    onChange={handleFileUpload}
                 />
-                <ExcelReaderSheet2 sheet2Data={sheet2Data}/>
-            </div>
-        );
+            </label>
+            <span className="file-name">{fileName}</span>
+            <ExcelEditor
+                data={data}
+                setData={setData}
+                inputData={inputData}
+                setInputData={setInputData}
+                workbook={workbook}
+                fileName={fileName}
+                handleSave={handleSave}
+            />
+            <ExcelReaderSheet2 sheet2Data={sheet2Data} />
+        </div>
+    );
 };
 
 export default ExcelManager;

@@ -2,37 +2,84 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+th {
+  background-color: #f2f2f2;
+}
+
+.file-upload-wrapper {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 10px;
+}
+
+.custom-file-input {
+  display: none;
+}
+
+.custom-file-label {
+  width: 150px;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #007bff;
   color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.custom-file-label:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.file-name {
+  margin-top: -6px;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  max-width: calc(100% - 170px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+
+  input[type="number"],
+  .btn {
+    width: 100%;
+    margin-top: 10px;
   }
 }

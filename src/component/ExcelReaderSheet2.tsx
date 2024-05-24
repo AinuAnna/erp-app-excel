@@ -29,7 +29,7 @@ const ExcelReaderSheet2: React.FC<ExcelReaderSheet2Props> = ({ sheet2Data }) => 
 
     return (
         <div>
-            <h1>Excel Reader - Sheet 2</h1>
+            <h1>RESULT</h1>
             <table style={tableStyles.table}>
                 <tbody>
                     {sheet2Data.map((row, rowIndex) => (
