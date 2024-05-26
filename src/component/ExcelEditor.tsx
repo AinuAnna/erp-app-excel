@@ -48,43 +48,34 @@ const ExcelEditor: React.FC<ExcelEditorProps> = ({ data, setData, inputData, set
         <div>
             <table style={tableStyles.table}>
                 <tbody>
-                {data.length > 0 && (
-                    <table style={tableStyles.table}>
-                        <thead>
-                        <tr>
-                            {data[0].map((header: string, index: number) => (
-                                <th key={index} style={tableStyles.th}>
-                                    {header}
-                                </th>
-                            ))}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {data.map((row: any[], rowIndex: number) => (
-                            <tr key={rowIndex}>
-                                {data[0].map((header: string, colIndex: number) => (
-                                    <td key={colIndex} style={tableStyles.td}>
-                                        {typeof row[colIndex] === 'number' ? (
-                                            <input
-                                                type="number"
-                                                name={`${data[0][colIndex]}-${rowIndex}`}
-                                                value={inputData[`${data[0][colIndex]}-${rowIndex}`]}
-                                                onChange={handleChange}
-                                                style={tableStyles.input}
-                                            />
-                                        ) : (
-                                            row[colIndex]
-                                        )}
-                                    </td>
+                    {data.length > 0 && (
+                        <table style={tableStyles.table}>
+                            <tbody>
+                                {data.map((row: any[], rowIndex: number) => (
+                                    <tr key={rowIndex}>
+                                        {data[0].map((header: string, colIndex: number) => (
+                                            <td key={colIndex} style={tableStyles.td}>
+                                                {typeof row[colIndex] === 'number' ? (
+                                                    <input
+                                                        type="number"
+                                                        name={`${data[0][colIndex]}-${rowIndex}`}
+                                                        value={inputData[`${data[0][colIndex]}-${rowIndex}`]}
+                                                        onChange={handleChange}
+                                                        style={tableStyles.input}
+                                                    />
+                                                ) : (
+                                                    row[colIndex]
+                                                )}
+                                            </td>
+                                        ))}
+                                    </tr>
                                 ))}
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                )}
+                            </tbody>
+                        </table>
+                    )}
                 </tbody>
             </table>
-            <button onClick={handleSave}>Save</button>
+            <button className='btn' onClick={handleSave}>Save</button>
         </div>
     );
 };

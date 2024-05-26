@@ -35,7 +35,7 @@ const ExcelReaderSheet2: React.FC<ExcelReaderSheet2Props> = ({ tables, tableNumb
 
     return (
         <div>
-            <h1>Excel Reader - Sheet 2</h1>
+            <h1>RESULT</h1>
             {tablesToDisplay.map(([tableNumber, tableData]) => (
                 <div key={tableNumber}>
                     <h2>{tableNumber}</h2>

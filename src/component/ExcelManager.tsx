@@ -225,20 +225,29 @@ const ExcelManager: React.FC = () => {
     };
 
     return (
-            <div>
-                <input type="file" onChange={handleFileUpload}/>
-                <ExcelEditor
-                    data={data}
-                    setData={setData}
-                    inputData={inputData}
-                    setInputData={setInputData}
-                    workbook={workbook}
-                    fileName={fileName}
-                    handleSave={handleSave}
+        <div>
+            <h1>ERP-SYSTEM</h1>
+            <label>
+                Upload
+                <input
+                    type="file"
+                    className="custom-file-input"
+                    onChange={handleFileUpload}
                 />
-                <ExcelReaderSheet2 tables={tables} tableNumbersToDisplay={['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5', 'Table 6', 'Table 7', 'Table 8', 'Table 9', 'Table 10', 'Table 11', 'Table 12', 'Table 13', 'Table 14', 'Table 15']} />
-            </div>
-        );
+            </label>
+            <span className="file-name">{fileName}</span>
+            <ExcelEditor
+                data={data}
+                setData={setData}
+                inputData={inputData}
+                setInputData={setInputData}
+                workbook={workbook}
+                fileName={fileName}
+                handleSave={handleSave}
+            />
+            <ExcelReaderSheet2 tables={tables} tableNumbersToDisplay={['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5', 'Table 6', 'Table 7', 'Table 8', 'Table 9', 'Table 10', 'Table 11', 'Table 12', 'Table 13', 'Table 14', 'Table 15']} />
+        </div>
+    );
 };
 
 export default ExcelManager;
