@@ -25,7 +25,7 @@ const ExcelManager: React.FC = () => {
 
                     const sheet1Name = wb.SheetNames[0];
                     const sheet1 = wb.Sheets[sheet1Name];
-                    let sheet1Data: any[][] = XLSX.utils.sheet_to_json(sheet1, { header: 1, blankrows: true, defval: ''  }) as any[][];
+                    let sheet1Data: any[][] = XLSX.utils.sheet_to_json(sheet1, { header: 1, blankrows: true, defval: '' }) as any[][];
                     setData(sheet1Data);
 
                     const sheet2Name = wb.SheetNames[1];
@@ -42,7 +42,7 @@ const ExcelManager: React.FC = () => {
                                 tables[currentTable].endIndex = rowIndex - 1;
                             }
                             currentTable = `Table ${firstCellValue}`;
-                            tables[currentTable] = { data: [], startIndex: rowIndex+2, endIndex: rowIndex+2 };
+                            tables[currentTable] = { data: [], startIndex: rowIndex + 2, endIndex: rowIndex + 2 };
                         }
                         if (currentTable) {
                             tables[currentTable].data.push(row);
@@ -136,10 +136,9 @@ const ExcelManager: React.FC = () => {
         const sheet2 = workbook.Sheets[sheet2Name];
 
         // Считываем формулы из второго листа
-        const formulas = {};
+        const formulas: { [cell: string]: string } = {};
         for (const cell in sheet2) {
             if (sheet2.hasOwnProperty(cell) && sheet2[cell].f) {
-                // @ts-ignore
                 formulas[cell] = sheet2[cell].f;
             }
         }
@@ -161,9 +160,7 @@ const ExcelManager: React.FC = () => {
 
                         // Рекурсивно вычисляем значение, если оно еще не вычислено
                         if (!(cellKey in calculatedValues)) {
-                            // @ts-ignore
                             if (formulas[cellKey]) {
-                                // @ts-ignore
                                 calculatedValues[cellKey] = processFormula(formulas[cellKey], data1, data2, calculatedValues);
                             } else {
                                 let value = sheetData[rowIndex][colIndex];
@@ -223,13 +220,10 @@ const ExcelManager: React.FC = () => {
         setTables(tables);
     };
 
-    const processPercentages = (str: string) => {
-        // @ts-ignore
-        return str.replace(/(\d+(\.\d+)?|\([^()]+\))%/g, (match, expr) => {
-            const evaluated = new Function(`return ${expr}`)();
-            return evaluated * 0.01;
-        });
-    };
+    const processPercentages = (str: string) => str.replace(/(\d+(\.\d+)?|\([^()]+\))%/g, (_: string, expr: string): string => {
+        const evaluated = new Function(`return ${expr}`)();
+        return (evaluated * 0.01).toString();
+    });
 
     return (
         <div>
